@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Babacan Yeni Nesil Çiğköfte</title>
+
+<style>
+:root{
+    --bg:#f7f7f5;
+    --card:#ffffff;
+    --text:#171717;
+    --muted:#737373;
+    --line:#e5e5e5;
+    --red:#d71920;
+    --red2:#b50f15;
+    --green:#16a34a;
+    --shadow:0 15px 45px rgba(0,0,0,.08);
+}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    transition:.3s;
+}
+
+body.dark{
+    --bg:#090909;
+    --card:#151515;
+    --text:#f5f5f5;
+    --muted:#a3a3a3;
+    --line:#292929;
+    --shadow:0 15px 45px rgba(0,0,0,.35);
+}
+
+button{
+    font:inherit;
+    cursor:pointer;
+}
+
+.container{
+    width:min(1180px,92%);
+    margin:auto;
+}
+
+/* HEADER */
+
+header{
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:rgba(255,255,255,.8);
+    backdrop-filter:blur(18px);
+    border-bottom:1px solid var(--line);
+}
+
+.dark header{
+    background:rgba(9,9,9,.8);
+}
+
+.nav{
+    height:74px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-weight:900;
+}
+
+.logo-icon{
+    width:44px;
+    height:44px;
+    border-radius:14px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg,var(--red),#ff5a3c);
+    color:white;
+    font-size:23px;
+    box-shadow:0 8px 25px rgba(215,25,32,.3);
+}
+
+.logo-text small{
+    display:block;
+    font-size:9px;
+    letter-spacing:1px;
+    opacity:.7;
+}
+
+.nav-right{
+    display:flex;
+    gap:10px;
+}
+
+.theme-btn,
+.cart-btn{
+    border:1px solid var(--line);
+    background:var(--card);
+    color:var(--text);
+    border-radius:13px;
+    padding:11px 15px;
+}
+
+.cart-btn{
+    background:var(--text);
+    color:var(--bg);
+    font-weight:800;
+}
+
+/* HERO */
+
+.hero{
+    margin:30px 0;
+    min-height:450px;
+    border-radius:32px;
+    overflow:hidden;
+    position:relative;
+    display:flex;
+    align-items:center;
+    padding:55px;
+    background:
+        radial-gradient(circle at 80% 20%,rgba(255,80,50,.35),transparent 30%),
+        linear-gradient(135deg,#151515,#46080b);
+    color:white;
+    box-shadow:var(--shadow);
+}
+
+.hero-content{
+    max-width:650px;
+    position:relative;
+    z-index:2;
+}
+
+.hero-label{
+    color:#ff9c91;
+    font-size:13px;
+    font-weight:800;
+    letter-spacing:2px;
+}
+
+.hero h1{
+    font-size:clamp(42px,6vw,76px);
+    line-height:.96;
+    margin:18px 0;
+}
+
+.hero p{
+    color:#ddd;
+    font-size:18px;
+    line-height:1.6;
+    max-width:600px;
+}
+
+.hero-button{
+    display:inline-block;
+    margin-top:25px;
+    background:white;
+    color:#111;
+    padding:15px 22px;
+    border-radius:14px;
+    text-decoration:none;
+    font-weight:900;
+}
+
+/* MENU */
+
+.menu-title{
+    margin:60px 0 20px;
+}
+
+.menu-title h2{
+    font-size:34px;
+}
+
+.menu-title p{
+    color:var(--muted);
+    margin-top:7px;
+}
+
+.categories{
+    display:flex;
+    gap:8px;
+    overflow:auto;
+    padding-bottom:12px;
+}
+
+.category{
+    border:1px solid var(--line);
+    background:var(--card);
+    color:var(--text);
+    padding:11px 17px;
+    border-radius:999px;
+    white-space:nowrap;
+}
+
+.category.active{
+    background:var(--text);
+    color:var(--bg);
+}
+
+/* PRODUCTS */
+
+.products{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.product{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:23px;
+    overflow:hidden;
+    box-shadow:var(--shadow);
+    transition:.25s;
+}
+
+.product:hover{
+    transform:translateY(-5px);
+}
+
+.product-image{
+    height:190px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:95px;
+    background:linear-gradient(135deg,#ffe4df,#fff1e5);
+}
+
+.product-info{
+    padding:20px;
+}
+
+.product-info h3{
+    margin-bottom:8px;
+}
+
+.product-info p{
+    color:var(--muted);
+    font-size:14px;
+    line-height:1.5;
+    min-height:44px;
+}
+
+.product-bottom{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:18px;
+}
+
+.price{
+    font-size:20px;
+    font-weight:900;
+}
+
+.add{
+    border:0;
+    background:var(--red);
+    color:white;
+    padding:11px 15px;
+    border-radius:12px;
+    font-weight:800;
+}
+
+/* INFO */
+
+.info{
+    margin:60px 0;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+.info-box{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:23px;
+}
+
+.info-box h3{
+    margin-bottom:8px;
+}
+
+.info-box p{
+    color:var(--muted);
+    font-size:14px;
+}
+
+/* CART */
+
+.overlay{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.65);
+    z-index:200;
+}
+
+.overlay.active{
+    display:block;
+}
+
+.cart-panel{
+    position:absolute;
+    right:0;
+    top:0;
+    height:100%;
+    width:min(470px,100%);
+    background:var(--bg);
+    padding:25px;
+    overflow:auto;
+}
+
+.cart-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:20px;
+}
+
+.close{
+    width:40px;
+    height:40px;
+    border-radius:12px;
+    border:1px solid var(--line);
+    background:var(--card);
+    color:var(--text);
+}
+
+.cart-item{
+    display:flex;
+    gap:12px;
+    padding:15px 0;
+    border-bottom:1px solid var(--line);
+}
+
+.cart-item-main{
+    flex:1;
+}
+
+.quantity{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.quantity button{
+    width:30px;
+    height:30px;
+    border:1px solid var(--line);
+    background:var(--card);
+    color:var(--text);
+    border-radius:8px;
+}
+
+.total{
+    display:flex;
+    justify-content:space-between;
+    margin-top:25px;
+    font-size:21px;
+}
+
+.checkout{
+    width:100%;
+    margin-top:18px;
+    padding:16px;
+    border:0;
+    border-radius:14px;
+    background:var(--red);
+    color:white;
+    font-weight:900;
+    font-size:16px;
+}
+
+.empty{
+    text-align:center;
+    padding:60px 10px;
+    color:var(--muted);
+}
+
+/* FOOTER */
+
+footer{
+    margin-top:70px;
+    border-top:1px solid var(--line);
+    padding:35px 0;
+    color:var(--muted);
+    text-align:center;
+}
+
+/* MOBILE */
+
+@media(max-width:850px){
+
+    .products{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .info{
+        grid-template-columns:1fr;
+    }
+
+    .hero{
+        padding:38px 28px;
+    }
+}
+
+@media(max-width:560px){
+
+    .products{
+        grid-template-columns:1fr;
+    }
+
+    .hero{
+        min-height:420px;
+    }
+
+    .hero h1{
+        font-size:44px;
+    }
+
+    .logo-text{
+        display:none;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="container nav">
+
+<div class="logo">
+
+<div class="logo-icon">
+🥙
+</div>
+
+<div class="logo-text">
+BABACAN
+<small>YENİ NESİL ÇİĞKÖFTE</small>
+</div>
+
+</div>
+
+<div class="nav-right">
+
+<button class="theme-btn" onclick="toggleTheme()">
+🌙
+</button>
+
+<button class="cart-btn" onclick="openCart()">
+🛒 Sepet (<span id="cartCount">0</span>)
+</button>
+
+</div>
+
+</div>
+
+</header>
+
+
+<main class="container">
+
+<section class="hero">
+
+<div class="hero-content">
+
+<div class="hero-label">
+YENİ NESİL LEZZET
+</div>
+
+<h1>
+Çiğköfteyi<br>
+başka seviyeye taşıdık.
+</h1>
+
+<p>
+Taptaze malzemeler, özel soslar ve sana göre hazırlanan
+lezzetler. Siparişini birkaç dokunuşla ver.
+</p>
+
+<a href="#menu" class="hero-button">
+Menüyü Keşfet ↓
+</a>
+
+</div>
+
+</section>
+
+
+<section id="menu">
+
+<div class="menu-title">
+
+<h2>Menümüz</h2>
+
+<p>
+Canın ne çekiyorsa seç, sepete ekle.
+</p>
+
+</div>
+
+
+<div class="categories">
+
+<button class="category active"
+onclick="filterProducts('all',this)">
+Tümü
+</button>
+
+<button class="category"
+onclick="filterProducts('porsiyon',this)">
+Porsiyon
+</button>
+
+<button class="category"
+onclick="filterProducts('dürüm',this)">
+Dürüm
+</button>
+
+<button class="category"
+onclick="filterProducts('combo',this)">
+Combo
+</button>
+
+</div>
+
+
+<div class="products" id="products"></div>
+
+</section>
+
+
+<section class="info">
+
+<div class="info-box">
+
+<h3>🚀 Hızlı Hazırlık</h3>
+
+<p>
+Siparişin doğrudan işletmenin sipariş sistemine düşer.
+</p>
+
+</div>
+
+
+<div class="info-box">
+
+<h3>🌶️ Sana Göre</h3>
+
+<p>
+Acı, sos ve ekstra malzeme tercihlerini belirleyebilirsin.
+</p>
+
+</div>
+
+
+<div class="info-box">
+
+<h3>🔔 Canlı Sipariş</h3>
+
+<p>
+Gerçek sistem bağlantısıyla işletme sipariş geldiğinde anında haberdar olur.
+</p>
+
+</div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+<div class="container">
+
+© 2026 Babacan Yeni Nesil Çiğköfte
+
+</div>
+
+</footer>
+
+
+<!-- SEPET -->
+
+<div class="overlay" id="cartOverlay">
+
+<div class="cart-panel">
+
+<div class="cart-header">
+
+<h2>Sepetin</h2>
+
+<button class="close"
+onclick="closeCart()">
+✕
+</button>
+
+</div>
+
+<div id="cartItems"></div>
+
+<div id="cartSummary"></div>
+
+</div>
+
+</div>
+
+
+<script>
+
+const products = [
+
+{
+id:1,
+name:"Klasik Çiğköfte Porsiyon",
+category:"porsiyon",
+price:140,
+emoji:"🥙",
+description:"Marul, limon ve nar ekşisiyle klasik lezzet."
+},
+
+{
+id:2,
+name:"Mega Çiğköfte Dürüm",
+category:"dürüm",
+price:110,
+emoji:"🌯",
+description:"Bol çiğköfte, sos ve taptaze yeşillikler."
+},
+
+{
+id:3,
+name:"Acılı Çiğköfte Porsiyon",
+category:"porsiyon",
+price:150,
+emoji:"🌶️",
+description:"Acıyı sevenlere özel baharatlı tarif."
+},
+
+{
+id:4,
+name:"2 Kişilik Combo",
+category:"combo",
+price:320,
+emoji:"🥗",
+description:"2 porsiyon çiğköfte + 2 ayran + bol yeşillik."
+},
+
+{
+id:5,
+name:"Mega Aile Paketi",
+category:"combo",
+price:520,
+emoji:"📦",
+description:"Kalabalık sofralar için ekonomik paket."
+},
+
+{
+id:6,
+name:"Atom Dürüm",
+category:"dürüm",
+price:135,
+emoji:"🔥",
+description:"Ekstra acı sosla hazırlanan özel dürüm."
+}
+
+];
+
+
+let cart =
+JSON.parse(localStorage.getItem("babacanCart") || "[]");
+
+
+function money(value){
+
+return new Intl.NumberFormat("tr-TR",{
+
+style:"currency",
+currency:"TRY",
+maximumFractionDigits:0
+
+}).format(value);
+
+}
+
+
+function renderProducts(category="all"){
+
+const container =
+document.getElementById("products");
+
+const list =
+products.filter(product =>
+category==="all" ||
+product.category===category
+);
+
+container.innerHTML =
+list.map(product => `
+
+<div class="product">
+
+<div class="product-image">
+${product.emoji}
+</div>
+
+<div class="product-info">
+
+<h3>${product.name}</h3>
+
+<p>
+${product.description}
+</p>
+
+<div class="product-bottom">
+
+<span class="price">
+${money(product.price)}
+</span>
+
+<button class="add"
+onclick="addToCart(${product.id})">
++ Sepete
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+`).join("");
+
+}
+
+
+function filterProducts(category,button){
+
+document
+.querySelectorAll(".category")
+.forEach(item =>
+item.classList.remove("active")
+);
+
+button.classList.add("active");
+
+renderProducts(category);
+
+}
+
+
+function addToCart(id){
+
+const item =
+cart.find(item => item.id===id);
+
+if(item){
+
+item.quantity++;
+
+}else{
+
+cart.push({
+id:id,
+quantity:1
+});
+
+}
+
+saveCart();
+
+openCart();
+
+}
+
+
+function changeQuantity(id,change){
+
+const item =
+cart.find(item => item.id===id);
+
+if(!item)return;
+
+item.quantity += change;
+
+if(item.quantity<=0){
+
+cart =
+cart.filter(item =>
+item.id!==id
+);
+
+}
+
+saveCart();
+
+}
+
+
+function saveCart(){
+
+localStorage.setItem(
+"babacanCart",
+JSON.stringify(cart)
+);
+
+updateCartCount();
+
+renderCart();
+
+}
+
+
+function updateCartCount(){
+
+const count =
+cart.reduce(
+(total,item)=>
+total+item.quantity,
+0
+);
+
+document.getElementById(
+"cartCount"
+).textContent=count;
+
+}
+
+
+function renderCart(){
+
+const container =
+document.getElementById("cartItems");
+
+const summary =
+document.getElementById("cartSummary");
+
+
+if(cart.length===0){
+
+container.innerHTML=`
+<div class="empty">
+Sepetin şu anda boş. 🥙
+<br><br>
+Menüden bir lezzet seç!
+</div>
+`;
+
+summary.innerHTML="";
+
+return;
+
+}
+
+
+let total=0;
+
+
+container.innerHTML =
+cart.map(item=>{
+
+const product =
+products.find(
+product=>product.id===item.id
+);
+
+total +=
+product.price *
+item.quantity;
+
+
+return `
+
+<div class="cart-item">
+
+<div style="font-size:30px">
+${product.emoji}
+</div>
+
+<div class="cart-item-main">
+
+<strong>
+${product.name}
+</strong>
+
+<br>
+
+<small>
+${money(product.price)}
+</small>
+
+</div>
+
+<div class="quantity">
+
+<button
+onclick="changeQuantity(${product.id},-1)">
+−
+</button>
+
+<strong>
+${item.quantity}
+</strong>
+
+<button
+onclick="changeQuantity(${product.id},1)">
++
+</button>
+
+</div>
+
+</div>
+
+`;
+
+}).join("");
+
+
+summary.innerHTML=`
+
+<div class="total">
+
+<strong>
+Toplam
+</strong>
+
+<strong>
+${money(total)}
+</strong>
+
+</div>
+
+<button
+class="checkout"
+onclick="createOrder()">
+
+Siparişi Tamamla →
+
+</button>
+
+`;
+
+}
+
+
+function openCart(){
+
+document
+.getElementById("cartOverlay")
+.classList.add("active");
+
+renderCart();
+
+}
+
+
+function closeCart(){
+
+document
+.getElementById("cartOverlay")
+.classList.remove("active");
+
+}
+
+
+function createOrder(){
+
+if(cart.length===0){
+
+return;
+
+}
+
+
+const orderNumber =
+"B"+Date.now()
+.toString()
+.slice(-6);
+
+
+const total =
+cart.reduce((sum,item)=>{
+
+const product =
+products.find(
+product=>product.id===item.id
+);
+
+return sum +
+product.price *
+item.quantity;
+
+},0);
+
+
+const order={
+
+orderNumber:orderNumber,
+
+items:cart,
+
+total:total,
+
+status:"Yeni Sipariş",
+
+createdAt:
+new Date().toISOString()
+
+};
+
+
+let orders =
+JSON.parse(
+localStorage.getItem("babacanOrders") || "[]"
+);
+
+
+orders.unshift(order);
+
+
+localStorage.setItem(
+"babacanOrders",
+JSON.stringify(orders)
+);
+
+
+cart=[];
+
+saveCart();
+
+closeCart();
+
+
+alert(
+"✅ Siparişiniz alındı!\\n\\n"+
+"Sipariş No: "+
+orderNumber+
+"\\n"+
+"Toplam: "+
+money(total)
+);
+
+}
+
+
+function toggleTheme(){
+
+document.body.classList.toggle("dark");
+
+localStorage.setItem(
+
+"babacanTheme",
+
+document.body.classList.contains("dark")
+?
+"dark"
+:
+"light"
+
+);
+
+}
+
+
+if(
+localStorage.getItem("babacanTheme")
+==="dark"
+){
+
+document.body.classList.add("dark");
+
+}
+
+
+renderProducts();
+
+updateCartCount();
+
+renderCart();
+
+</script>
+
+</body>
+</html>
