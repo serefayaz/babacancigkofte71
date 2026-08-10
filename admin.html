@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Babacan Yönetim Merkezi</title>
+
+<style>
+
+:root{
+    --arka:#f5f5f5;
+    --kart:#ffffff;
+    --metin:#171717;
+    --soluk:#737373;
+    --cizgi:#e5e5e5;
+    --kirmizi:#d71920;
+    --yesil:#16a34a;
+    --turuncu:#ea580c;
+    --mavi:#2563eb;
+    --golge:0 15px 40px rgba(0,0,0,.07);
+}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:var(--arka);
+    color:var(--metin);
+}
+
+button{
+    font:inherit;
+    cursor:pointer;
+}
+
+/* ÜST BAR */
+
+.ust{
+    height:75px;
+    background:var(--kart);
+    border-bottom:1px solid var(--cizgi);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 30px;
+    position:sticky;
+    top:0;
+    z-index:50;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-weight:900;
+}
+
+.logo-icon{
+    width:45px;
+    height:45px;
+    border-radius:14px;
+    background:linear-gradient(135deg,#d71920,#ff573d);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+    font-size:23px;
+}
+
+.logo small{
+    display:block;
+    color:var(--soluk);
+    font-size:10px;
+    letter-spacing:1px;
+}
+
+.ust-sag{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.tema,
+.cikis{
+    border:1px solid var(--cizgi);
+    background:var(--kart);
+    color:var(--metin);
+    padding:11px 15px;
+    border-radius:12px;
+}
+
+.cikis{
+    color:var(--kirmizi);
+}
+
+/* ANA */
+
+.ana{
+    width:min(1250px,94%);
+    margin:35px auto;
+}
+
+/* BAŞLIK */
+
+.baslik{
+    margin-bottom:30px;
+}
+
+.baslik h1{
+    font-size:36px;
+    margin-bottom:8px;
+}
+
+.baslik p{
+    color:var(--soluk);
+}
+
+/* İSTATİSTİK */
+
+.istatistikler{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+    margin-bottom:35px;
+}
+
+.istatistik{
+    background:var(--kart);
+    border:1px solid var(--cizgi);
+    border-radius:20px;
+    padding:22px;
+    box-shadow:var(--golge);
+}
+
+.istatistik-ust{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.istatistik-ikon{
+    width:45px;
+    height:45px;
+    border-radius:13px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#fee2e2;
+    font-size:21px;
+}
+
+.istatistik h3{
+    font-size:28px;
+    margin-top:17px;
+}
+
+.istatistik p{
+    color:var(--soluk);
+    font-size:13px;
+    margin-top:4px;
+}
+
+/* SEKME */
+
+.sekmeler{
+    display:flex;
+    gap:8px;
+    overflow:auto;
+    margin-bottom:20px;
+}
+
+.sekme{
+    border:1px solid var(--cizgi);
+    background:var(--kart);
+    color:var(--metin);
+    padding:12px 18px;
+    border-radius:12px;
+    white-space:nowrap;
+}
+
+.sekme.aktif{
+    background:var(--metin);
+    color:var(--arka);
+}
+
+/* PANEL */
+
+.panel{
+    background:var(--kart);
+    border:1px solid var(--cizgi);
+    border-radius:22px;
+    box-shadow:var(--golge);
+    overflow:hidden;
+}
+
+.panel-baslik{
+    padding:22px;
+    border-bottom:1px solid var(--cizgi);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.panel-baslik h2{
+    font-size:21px;
+}
+
+.yenile{
+    border:1px solid var(--cizgi);
+    background:var(--kart);
+    color:var(--metin);
+    padding:10px 14px;
+    border-radius:10px;
+}
+
+/* SİPARİŞ */
+
+.siparis{
+    padding:22px;
+    border-bottom:1px solid var(--cizgi);
+}
+
+.siparis:last-child{
+    border-bottom:0;
+}
+
+.siparis-ust{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.siparis-no{
+    font-weight:900;
+    font-size:18px;
+}
+
+.tarih{
+    color:var(--soluk);
+    font-size:13px;
+}
+
+.durum{
+    padding:7px 11px;
+    border-radius:999px;
+    font-size:12px;
+    font-weight:800;
+}
+
+.durum-yeni{
+    background:#fee2e2;
+    color:#b91c1c;
+}
+
+.durum-hazirlaniyor{
+    background:#ffedd5;
+    color:#c2410c;
+}
+
+.durum-hazir{
+    background:#dcfce7;
+    color:#15803d;
+}
+
+.durum-teslim{
+    background:#dbeafe;
+    color:#1d4ed8;
+}
+
+.siparis-urunler{
+    margin:17px 0;
+    padding:15px;
+    background:var(--arka);
+    border-radius:13px;
+}
+
+.urun-satir{
+    display:flex;
+    justify-content:space-between;
+    padding:7px 0;
+    font-size:14px;
+}
+
+.siparis-alt{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.toplam{
+    font-size:20px;
+    font-weight:900;
+}
+
+.islemler{
+    display:flex;
+    gap:7px;
+    flex-wrap:wrap;
+}
+
+.islem{
+    border:1px solid var(--cizgi);
+    background:var(--kart);
+    color:var(--metin);
+    padding:9px 12px;
+    border-radius:10px;
+    font-size:13px;
+}
+
+.islem:hover{
+    background:var(--arka);
+}
+
+.bos{
+    text-align:center;
+    padding:70px 20px;
+    color:var(--soluk);
+}
+
+.bos-ikon{
+    font-size:50px;
+    margin-bottom:15px;
+}
+
+/* ÜRÜNLER */
+
+.urunler{
+    padding:22px;
+}
+
+.urun-kart{
+    border:1px solid var(--cizgi);
+    border-radius:17px;
+    padding:18px;
+    margin-bottom:12px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+}
+
+.urun-bilgi{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.urun-emoji{
+    width:55px;
+    height:55px;
+    border-radius:14px;
+    background:#fee2e2;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:27px;
+}
+
+.urun-bilgi p{
+    color:var(--soluk);
+    font-size:13px;
+    margin-top:5px;
+}
+
+.urun-fiyat{
+    font-weight:900;
+    margin-bottom:7px;
+}
+
+.urun-durum{
+    border:0;
+    padding:8px 12px;
+    border-radius:9px;
+    font-size:12px;
+}
+
+/* MOBİL */
+
+@media(max-width:900px){
+
+    .istatistikler{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:600px){
+
+    .ust{
+        padding:0 15px;
+    }
+
+    .ana{
+        width:92%;
+    }
+
+    .logo-yazi{
+        display:none;
+    }
+
+    .istatistikler{
+        grid-template-columns:1fr 1fr;
+        gap:10px;
+    }
+
+    .istatistik{
+        padding:17px;
+    }
+
+    .istatistik h3{
+        font-size:23px;
+    }
+
+    .baslik h1{
+        font-size:29px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<header class="ust">
+
+<div class="logo">
+
+<div class="logo-icon">
+🥙
+</div>
+
+<div class="logo-yazi">
+
+BABACAN
+
+<small>
+YÖNETİM MERKEZİ
+</small>
+
+</div>
+
+</div>
+
+
+<div class="ust-sag">
+
+<button
+class="tema"
+onclick="temaDegistir()">
+
+🌙
+
+</button>
+
+
+<button
+class="cikis"
+onclick="cikisYap()">
+
+Çıkış
+
+</button>
+
+</div>
+
+</header>
+
+
+
+<main class="ana">
+
+
+<section class="baslik">
+
+<h1>
+Günaydın, Yönetici 👋
+</h1>
+
+<p>
+Babacan Yeni Nesil Çiğköfte işletme yönetim merkezi
+</p>
+
+</section>
+
+
+
+<section class="istatistikler">
+
+
+<div class="istatistik">
+
+<div class="istatistik-ust">
+
+<span>
+Bugünkü Siparişler
+</span>
+
+<div class="istatistik-ikon">
+🛒
+</div>
+
+</div>
+
+<h3 id="bugunkuSiparis">
+0
+</h3>
+
+<p>
+Bugün alınan toplam sipariş
+</p>
+
+</div>
+
+
+
+<div class="istatistik">
+
+<div class="istatistik-ust">
+
+<span>
+Bekleyen Siparişler
+</span>
+
+<div class="istatistik-ikon">
+🔔
+</div>
+
+</div>
+
+<h3 id="bekleyenSiparis">
+0
+</h3>
+
+<p>
+İşlem bekleyen siparişler
+</p>
+
+</div>
+
+
+
+<div class="istatistik">
+
+<div class="istatistik-ust">
+
+<span>
+Bugünkü Ciro
+</span>
+
+<div class="istatistik-ikon">
+💰
+</div>
+
+</div>
+
+<h3 id="bugunkuCiro">
+₺0
+</h3>
+
+<p>
+Bugünkü toplam satış
+</p>
+
+</div>
+
+
+
+<div class="istatistik">
+
+<div class="istatistik-ust">
+
+<span>
+Toplam Sipariş
+</span>
+
+<div class="istatistik-ikon">
+📊
+</div>
+
+</div>
+
+<h3 id="toplamSiparis">
+0
+</h3>
+
+<p>
+Sistemdeki toplam sipariş
+</p>
+
+</div>
+
+
+</section>
+
+
+
+<div class="sekmeler">
+
+<button
+class="sekme aktif"
+onclick="sekmeAc('siparisler',this)">
+
+📦 Siparişler
+
+</button>
+
+
+<button
+class="sekme"
+onclick="sekmeAc('urunler',this)">
+
+🍴 Ürünler
+
+</button>
+
+
+</div>
+
+
+
+<section
+id="siparisler"
+class="panel">
+
+
+<div class="panel-baslik">
+
+<h2>
+Gelen Siparişler
+</h2>
+
+
+<button
+class="yenile"
+onclick="verileriYukle()">
+
+↻ Yenile
+
+</button>
+
+</div>
+
+
+<div id="siparisListesi">
+
+</div>
+
+
+</section>
+
+
+
+<section
+id="urunler"
+class="panel"
+style="display:none;">
+
+
+<div class="panel-baslik">
+
+<h2>
+Menü Ürünleri
+</h2>
+
+
+<button
+class="yenile"
+onclick="urunleriGoster()">
+
+↻ Yenile
+
+</button>
+
+</div>
+
+
+<div
+class="urunler"
+id="urunListesi">
+
+</div>
+
+
+</section>
+
+
+</main>
+
+
+
+<script>
+
+
+const urunler=[
+
+{
+id:1,
+ad:"Klasik Çiğköfte Porsiyon",
+fiyat:140,
+emoji:"🥙"
+},
+
+{
+id:2,
+ad:"Mega Çiğköfte Dürüm",
+fiyat:110,
+emoji:"🌯"
+},
+
+{
+id:3,
+ad:"Acılı Çiğköfte Porsiyon",
+fiyat:150,
+emoji:"🌶️"
+},
+
+{
+id:4,
+ad:"2 Kişilik Combo",
+fiyat:320,
+emoji:"🥗"
+},
+
+{
+id:5,
+ad:"Mega Aile Paketi",
+fiyat:520,
+emoji:"📦"
+},
+
+{
+id:6,
+ad:"Atom Dürüm",
+fiyat:135,
+emoji:"🔥"
+}
+
+];
+
+
+function para(sayi){
+
+return new Intl.NumberFormat(
+"tr-TR",
+{
+style:"currency",
+currency:"TRY",
+maximumFractionDigits:0
+}
+).format(sayi);
+
+}
+
+
+
+function verileriYukle(){
+
+const siparisler =
+JSON.parse(
+localStorage.getItem(
+"babacanOrders"
+) || "[]"
+);
+
+
+const bugun =
+new Date()
+.toISOString()
+.split("T")[0];
+
+
+const bugunkuSiparisler =
+siparisler.filter(siparis =>
+siparis.createdAt &&
+siparis.createdAt.startsWith(bugun)
+);
+
+
+const ciro =
+bugunkuSiparisler.reduce(
+(toplam,siparis)=>
+toplam + siparis.total,
+0
+);
+
+
+const bekleyen =
+siparisler.filter(siparis =>
+siparis.status!=="Teslim Edildi" &&
+siparis.status!=="İptal Edildi"
+).length;
+
+
+document.getElementById(
+"bugunkuSiparis"
+).textContent =
+bugunkuSiparisler.length;
+
+
+document.getElementById(
+"bekleyenSiparis"
+).textContent =
+bekleyen;
+
+
+document.getElementById(
+"bugunkuCiro"
+).textContent =
+para(ciro);
+
+
+document.getElementById(
+"toplamSiparis"
+).textContent =
+siparisler.length;
+
+
+siparisListesiniGoster(
+siparisler
+);
+
+}
+
+
+
+function siparisListesiniGoster(
+siparisler
+){
+
+const alan =
+document.getElementById(
+"siparisListesi"
+);
+
+
+if(!siparisler.length){
+
+alan.innerHTML=`
+
+<div class="bos">
+
+<div class="bos-ikon">
+📭
+</div>
+
+<h3>
+Henüz sipariş yok
+</h3>
+
+<p>
+Yeni siparişler burada görünecek.
+</p>
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+alan.innerHTML =
+siparisler.map(
+siparis => {
+
+
+let durumSinif =
+"durum-yeni";
+
+
+if(
+siparis.status==="Hazırlanıyor"
+){
+
+durumSinif =
+"durum-hazirlaniyor";
+
+}
+
+
+if(
+siparis.status==="Hazır"
+){
+
+durumSinif =
+"durum-hazir";
+
+}
+
+
+if(
+siparis.status==="Teslim Edildi"
+){
+
+durumSinif =
+"durum-teslim";
+
+}
+
+
+const urunHTML =
+siparis.items.map(
+item=>{
+
+const urun =
+urunler.find(
+u=>u.id===item.id
+);
+
+
+return `
+
+<div class="urun-satir">
+
+<span>
+
+${urun ? urun.ad : "Ürün"}
+
+×
+
+${item.quantity}
+
+</span>
+
+<strong>
+
+${urun
+? para(urun.fiyat*item.quantity)
+: ""}
+
+</strong>
+
+</div>
+
+`;
+
+}).join("");
+
+
+return `
+
+<div class="siparis">
+
+<div class="siparis-ust">
+
+<div>
+
+<div class="siparis-no">
+
+Sipariş #${siparis.orderNumber}
+
+</div>
+
+<div class="tarih">
+
+${tarihGoster(
+siparis.createdAt
+)}
+
+</div>
+
+</div>
+
+
+<span
+class="durum ${durumSinif}">
+
+${siparis.status}
+
+</span>
+
+</div>
+
+
+<div class="siparis-urunler">
+
+${urunHTML}
+
+</div>
+
+
+<div class="siparis-alt">
+
+<div class="toplam">
+
+${para(siparis.total)}
+
+</div>
+
+
+<div class="islemler">
+
+${durumButonlari(
+siparis
+)}
+
+</div>
+
+</div>
+
+</div>
+
+`;
+
+}).join("");
+
+}
+
+
+
+function durumButonlari(siparis){
+
+if(
+siparis.status==="Teslim Edildi" ||
+siparis.status==="İptal Edildi"
+){
+
+return `
+
+<button
+class="islem"
+onclick="siparisSil('${siparis.orderNumber}')">
+
+🗑️ Sil
+
+</button>
+
+`;
+
+}
+
+
+return `
+
+<button
+class="islem"
+onclick="durumDegistir(
+'${siparis.orderNumber}',
+'Hazırlanıyor'
+)">
+
+🍳 Hazırlanıyor
+
+</button>
+
+
+<button
+class="islem"
+onclick="durumDegistir(
+'${siparis.orderNumber}',
+'Hazır'
+)">
+
+✅ Hazır
+
+</button>
+
+
+<button
+class="islem"
+onclick="durumDegistir(
+'${siparis.orderNumber}',
+'Teslim Edildi'
+)">
+
+🛵 Teslim Edildi
+
+</button>
+
+
+<button
+class="islem"
+onclick="durumDegistir(
+'${siparis.orderNumber}',
+'İptal Edildi'
+)">
+
+❌ İptal
+
+</button>
+
+`;
+
+}
+
+
+
+function durumDegistir(
+siparisNo,
+yeniDurum
+){
+
+let siparisler =
+JSON.parse(
+localStorage.getItem(
+"babacanOrders"
+) || "[]"
+);
+
+
+const siparis =
+siparisler.find(
+s=>s.orderNumber===siparisNo
+);
+
+
+if(siparis){
+
+siparis.status =
+yeniDurum;
+
+}
+
+
+localStorage.setItem(
+"babacanOrders",
+JSON.stringify(
+siparisler
+)
+);
+
+
+verileriYukle();
+
+}
+
+
+
+function siparisSil(
+siparisNo
+){
+
+if(
+!confirm(
+"Bu siparişi silmek istediğine emin misin?"
+)
+){
+
+return;
+
+}
+
+
+let siparisler =
+JSON.parse(
+localStorage.getItem(
+"babacanOrders"
+) || "[]"
+);
+
+
+siparisler =
+siparisler.filter(
+s=>s.orderNumber!==siparisNo
+);
+
+
+localStorage.setItem(
+"babacanOrders",
+JSON.stringify(
+siparisler
+)
+);
+
+
+verileriYukle();
+
+}
+
+
+
+function tarihGoster(
+tarih
+){
+
+if(!tarih){
+
+return "Tarih bilinmiyor";
+
+}
+
+
+return new Date(tarih)
+.toLocaleString(
+"tr-TR",
+{
+day:"2-digit",
+month:"2-digit",
+year:"numeric",
+hour:"2-digit",
+minute:"2-digit"
+}
+);
+
+}
+
+
+
+function urunleriGoster(){
+
+const alan =
+document.getElementById(
+"urunListesi"
+);
+
+
+alan.innerHTML =
+urunler.map(
+urun=>`
+
+<div class="urun-kart">
+
+<div class="urun-bilgi">
+
+<div class="urun-emoji">
+
+${urun.emoji}
+
+</div>
+
+
+<div>
+
+<strong>
+${urun.ad}
+</strong>
+
+<p>
+Menüdeki ürün
+</p>
+
+</div>
+
+</div>
+
+
+<div>
+
+<div class="urun-fiyat">
+
+${para(urun.fiyat)}
+
+</div>
+
+<button
+class="urun-durum"
+style="
+background:#dcfce7;
+color:#15803d;
+">
+
+Satışta
+
+</button>
+
+</div>
+
+</div>
+
+`
+).join("");
+
+}
+
+
+
+function sekmeAc(
+sekme,
+buton
+){
+
+document
+.querySelectorAll(".sekme")
+.forEach(
+x=>x.classList.remove(
+"aktif"
+)
+);
+
+
+buton.classList.add(
+"aktif"
+);
+
+
+document.getElementById(
+"siparisler"
+).style.display =
+"none";
+
+
+document.getElementById(
+"urunler"
+).style.display =
+"none";
+
+
+document.getElementById(
+sekme
+).style.display =
+"block";
+
+
+if(
+sekme==="urunler"
+){
+
+urunleriGoster();
+
+}
+
+}
+
+
+
+function temaDegistir(){
+
+document.body.classList.toggle(
+"karanlik"
+);
+
+}
+
+
+
+function cikisYap(){
+
+alert(
+"Yönetim panelinden çıkış yapıldı."
+);
+
+}
+
+
+
+verileriYukle();
+
+</script>
+
+</body>
+</html>
