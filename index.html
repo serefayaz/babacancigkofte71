@@ -58,11 +58,21 @@ height:70px;
 display:flex;
 align-items:center;
 justify-content:space-between;
+flex-wrap:nowrap;
 }
 
 .logo{
 font-weight:900;
 font-size:21px;
+display:flex;
+align-items:center;
+flex-shrink:0;
+}
+
+.logo img{
+width:100px;
+height:auto;
+display:block;
 }
 
 .logo small{
@@ -75,7 +85,9 @@ margin-top:2px;
 
 .nav-right{
 display:flex;
+align-items:center;
 gap:8px;
+flex-shrink:0;
 }
 
 .btn{
@@ -432,7 +444,8 @@ height:62px;
          alt="Babacan Çiğköfte"
          width="100">
 </div>
-    <div class="nav-right">
+
+<div class="nav-right">
 
 <button class="btn" onclick="toggleTheme()" id="themeBtn">
 🌙
@@ -470,7 +483,7 @@ Siparişini birkaç dokunuşla ver.
 </p>
 
 <a href="#menu">
- ↓
+↓
 </a>
 
 </div>
@@ -485,7 +498,7 @@ Siparişini birkaç dokunuşla ver.
 <h2>Menümüz</h2>
 
 <p>
-Bir kova mutluluk :) 
+Bir kova mutluluk :)
 </p>
 
 </div>
